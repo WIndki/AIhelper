@@ -1,0 +1,7 @@
+{
+    "hostname": "localhost",
+    "port": 3000,
+    "OPEN_AI_API_KEY": "YOUR_OPEN_AI_API_KEY",
+    "OPEN_AI_API_URL": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+    "available_models": ["qwen-coder-plus", "deepseek-r1", "qwen-max"]
+  }

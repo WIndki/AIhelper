@@ -1,0 +1,480 @@
+body {
+  font-family: Arial, sans-serif;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+}
+
+.header {
+  padding: 15px;
+  background-color: #4caf50;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+#userInfo {
+  display: flex;
+  align-items: center;
+}
+
+#welcomeMessage {
+  margin-right: 10px;
+  color: white;
+}
+
+#logoutBtn {
+  padding: 5px 10px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#logoutBtn:hover {
+  background-color: #d32f2f;
+}
+
+.chat-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: white;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.message {
+  max-width: 80%;
+  margin-bottom: 15px;
+  padding: 10px 15px;
+  border-radius: 18px;
+  line-height: 1.5;
+  position: relative;
+}
+
+.user-message {
+  background-color: #e3f2fd;
+  color: #333;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+
+.assistant-message {
+  background-color: #f1f1f1;
+  color: #333;
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+
+/* Markdown样式完整优化 */
+.message pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 12px;
+  overflow-x: auto;
+  margin: 12px 0;
+  position: relative;
+}
+
+.message pre code {
+  font-family: Consolas, Monaco, "Andale Mono", monospace;
+  font-size: 0.9em;
+  display: block;
+  line-height: 1.5;
+  tab-size: 4;
+}
+
+/* 代码块语言标签 */
+.message pre::before {
+  content: attr(data-language);
+  position: absolute;
+  top: 0;
+  right: 10px;
+  font-size: 0.7em;
+  color: #888;
+  background-color: #f8f8f8;
+  padding: 0 5px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+/* 代码块包装器样式 */
+.code-block-wrapper {
+  position: relative;
+}
+
+/* 代码块内的pre标签样式调整 */
+.code-block-wrapper pre {
+  margin: 0;
+  padding-top: 35px; /*为顶部的语言标签和复制按钮留出空间*/
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+}
+
+/* 代码语言标签样式 */
+.code-language {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  font-size: 1em;
+  color: #666;
+  background-color: transparent;
+  z-index: 1;
+}
+
+/* 代码块复制按钮样式 */
+/* .code-copy-btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 2px 6px;
+    font-size: 0.8em;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.code-copy-btn:hover {
+    background-color: rgba(240, 240, 240, 0.9);
+} */
+
+.message code:not([class]) {
+  background-color: rgba(175, 184, 193, 0.2);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-family: Consolas, Monaco, "Andale Mono", monospace;
+  font-size: 0.9em;
+}
+
+.message p {
+  margin: 8px 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.message h1 {
+  font-size: 1.6em;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #eee;
+}
+
+.message h2 {
+  font-size: 1.4em;
+  margin-top: 14px;
+  margin-bottom: 7px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.message h3 {
+  font-size: 1.2em;
+  margin-top: 12px;
+  margin-bottom: 6px;
+}
+
+.message h4 {
+  font-size: 1.1em;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.message ul,
+.message ol {
+  margin: 8px 0;
+  padding-left: 25px;
+}
+
+.message ul li,
+.message ol li {
+  margin-bottom: 4px;
+}
+
+.message table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 12px 0;
+}
+
+.message th,
+.message td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.message th {
+  background-color: #f2f2f2;
+  text-align: left;
+  font-weight: bold;
+}
+
+.message tr:nth-child(even) {
+  background-color: #f8f8f8;
+}
+
+.message blockquote {
+  border-left: 4px solid #ddd;
+  padding: 8px 12px;
+  margin: 8px 0;
+  background-color: #f9f9f9;
+  color: #555;
+}
+
+.message img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 10px 0;
+}
+
+.message a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.message a:hover {
+  text-decoration: underline;
+}
+
+.message hr {
+  border: 0;
+  height: 1px;
+  background-color: #ddd;
+  margin: 12px 0;
+}
+
+/* 任务列表样式 */
+.message ul.task-list {
+  list-style-type: none;
+  padding-left: 10px;
+}
+
+.message ul.task-list li {
+  position: relative;
+  padding-left: 25px;
+}
+
+.message ul.task-list-item-checkbox {
+  position: absolute;
+  left: 0;
+  margin-top: 3px;
+}
+
+/* 表格响应式设计 */
+@media (max-width: 600px) {
+  .message table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+/* 复制代码按钮 */
+.code-copy-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: none;
+  border-radius: 3px;
+  padding: 2px 6px;
+  font-size: 0.8em;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  z-index: -1;
+}
+
+.message pre:hover .code-copy-btn {
+  opacity: 1;
+}
+
+/* 数学公式支持 */
+.message .math {
+  overflow-x: auto;
+  padding: 5px 0;
+}
+
+/* 保持原始换行 */
+.user-message {
+  white-space: pre-wrap;
+}
+
+.thinking {
+  color: #999;
+  font-style: italic;
+  align-self: flex-start;
+  margin-bottom: 15px;
+}
+
+.input-area {
+  display: flex;
+  flex-direction: column;
+  background-color: #f9f9f9;
+  border-top: 1px solid #ddd;
+  padding: 10px 15px;
+}
+
+.input-row {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.bottom-row {
+  display: flex;
+  align-items: center;
+}
+
+#prompt {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  margin-right: 10px;
+  resize: none;
+  min-height: 20px;
+}
+
+.btn {
+  padding: 8px 15px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0 5px;
+  display: flex;
+  align-items: center;
+}
+
+#generateBtn {
+  background-color: #4caf50;
+  padding: 0 20px;
+  height: 40px;
+  border-radius: 20px;
+}
+
+#generateBtn:hover {
+  background-color: #45a049;
+}
+
+#generateBtn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+#clearBtn {
+  background-color: #ff9800;
+}
+
+#clearBtn:hover {
+  background-color: #e68a00;
+}
+
+#modelSelector {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-right: auto;
+}
+
+/* 消息操作按钮样式 */
+.message-actions {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: none;
+  z-index: 5;
+}
+
+.message:hover .message-actions {
+  display: flex;
+}
+
+.action-btn {
+  background-color: rgba(255, 255, 255, 0.7);
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  margin-left: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-btn:hover {
+  background-color: rgba(230, 230, 230, 0.9);
+}
+
+/* 建议将以下样式添加到您的CSS文件中 */
+.thinking-panel {
+  margin: 10px 0;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.thinking-header {
+  background-color: #f5f5f5;
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.thinking-header span {
+  font-weight: bold;
+  color: #555;
+}
+
+.toggle-thinking {
+  background-color: #e0e0e0;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 0.8em;
+}
+
+.toggle-thinking:hover {
+  background-color: #d0d0d0;
+}
+
+.thinking-content {
+  padding: 10px;
+  background-color: #f9f9f9;
+  white-space: pre-wrap;
+  font-family: monospace;
+  max-height: 300px;
+  overflow-y: auto;
+  font-size: 0.9em;
+  line-height: 1.4;
+}

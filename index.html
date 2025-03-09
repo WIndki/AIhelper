@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 聊天助手</title>
+    <!-- 添加marked.js库用于Markdown渲染 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
+    <!-- 添加highlight.js用于代码高亮 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <!-- 引入外部CSS文件 -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="header">
+        <div style="display: flex; align-items: center;">
+            <h1>AI 聊天助手</h1>
+        </div>
+        <div id="userInfo">
+            <span id="welcomeMessage"></span>
+            <button id="logoutBtn">退出登录</button>
+        </div>
+    </div>
+
+    <div class="chat-container">
+        <div id="messages" class="messages">
+            <div class="message assistant-message">
+                您好，我是AI助手，有什么可以帮助您的吗？
+                <div class="message-actions">
+                    <button class="action-btn copy-btn" title="复制">📋</button>
+                </div>
+            </div>
+        </div>
+        <div class="input-area">
+            <div class="input-row">
+                <textarea id="prompt" placeholder="输入信息..." rows="1"></textarea>
+                <button id="generateBtn">发送</button>
+            </div>
+            <div class="bottom-row">
+                <select id="modelSelector"></select>
+                <button class="btn" id="clearBtn">清空对话</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入外部JavaScript文件 -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>
