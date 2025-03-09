@@ -73,7 +73,8 @@ The `config.json` file contains the following settings:
 ## Web Interface
 
 Access the web interface at `http://localhost:3000/index.html` (or your configured hostname and port). The interface provides:
-
+![login](img/login.png)
+![chatbox](img/chatbox.png)
 - User authentication
 - Model selection
 - Chat history with markdown support
@@ -93,7 +94,6 @@ Access the web interface at `http://localhost:3000/index.html` (or your configur
 - SQLite3: User database
 - bcrypt: Password hashing
 - body-parser: Request parsing middleware
-
 ```
 AIhelper
 ├─ backend.js
